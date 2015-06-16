@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'GraphUtils'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1'
   s.date        = '2015-06-15'
   s.summary     = "Graphing Utilities"
   s.description = "A Ruby helper method for 2d-array coordinate lookups"

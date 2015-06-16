@@ -8,6 +8,8 @@
 
 module GraphUtils
 
+  # Find the coordinates of a target, returning the row and column indices as an array
+
   def self.find_rc(two_dimensional_array, target)
     column = nil
     row = nil
@@ -25,11 +27,15 @@ module GraphUtils
     [row, column]
   end
 
+# Find a value corresponding with the given [row,column] coordinates
+
   def self.rc_lookup(two_dimensional_array, coordinates)
     row = coordinates[0]
     column = coordinates[1]
     two_dimensional_array[row][column]
   end
+
+# Return an array of a column at a particular index.
 
   def self.find_column(board, column_index)
     column = []
@@ -40,6 +46,8 @@ module GraphUtils
     end
     column
   end
+
+# Returns an array of adjacent coordinates for a given set of coordinates. An options hash is included to specify an inclusive or exclusive lookup, defaulting to inclusive.
 
   def self.surrounding_coordinates(two_dimensional_array, coordinates, options = {} )
     raise ArgumentError.new("Must include [row,column] coordinates") unless coordinates.is_a?(Array)
@@ -69,6 +77,8 @@ module GraphUtils
       values
   end
 
+# Returns an array of adjacent targets for a given set of coordinates.
+
   def self.surrounding_coordinates_to_values(two_dimensional_array, coordinates, options = {})
     coordinates = GraphUtils.surrounding_coordinates(two_dimensional_array, coordinates, options)
 
@@ -80,6 +90,8 @@ module GraphUtils
     end
     values
   end
+
+# Deep iteration tools meant for manipulating N-D Array structures.
 
   def self.deepmap!(array, &block)
     array.map! do |elem|
