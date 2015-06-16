@@ -8,7 +8,7 @@
 
 module GraphUtils
 
-  def GraphUtils.find_rc(two_dimensional_array, target)
+  def self.find_rc(two_dimensional_array, target)
     column = nil
     row = nil
     two_dimensional_array.each do |y|
@@ -25,13 +25,13 @@ module GraphUtils
     [row, column]
   end
 
-  def GraphUtils.rc_lookup(two_dimensional_array, coordinates)
+  def self.rc_lookup(two_dimensional_array, coordinates)
     row = coordinates[0]
     column = coordinates[1]
     two_dimensional_array[row][column]
   end
 
-  def GraphUtils.find_column(board, column_index)
+  def self.find_column(board, column_index)
     column = []
     row_index = 0
     until row_index == board.length
@@ -41,7 +41,7 @@ module GraphUtils
     column
   end
 
-  def GraphUtils.surrounding_coordinates(two_dimensional_array, coordinates, options = {} )
+  def self.surrounding_coordinates(two_dimensional_array, coordinates, options = {} )
     raise ArgumentError.new("Must include [row,column] coordinates") unless coordinates.is_a?(Array)
     range = options[:range] || :inclusive
     row = coordinates[0]
@@ -69,7 +69,7 @@ module GraphUtils
       values
   end
 
-  def GraphUtils.surrounding_coordinates_to_values(two_dimensional_array, coordinates, options = {})
+  def self.surrounding_coordinates_to_values(two_dimensional_array, coordinates, options = {})
     coordinates = GraphUtils.surrounding_coordinates(two_dimensional_array, coordinates, options)
 
     values = []
@@ -81,25 +81,25 @@ module GraphUtils
     values
   end
 
-  def GraphUtils.deepmap!(array, &block)
+  def self.deepmap!(array, &block)
     array.map! do |elem|
       elem.is_a?(Array) ? deepmap!(elem, &block) : yield(elem)
     end
   end
 
-  def GraphUtils.deepmap(array, &block)
+  def self.deepmap(array, &block)
       array.map do |elem|
         elem.is_a?(Array) ? deepmap(elem, &block) : yield(elem)
     end
   end
 
-  def GraphUtils.deepeach(array, &block)
+  def self.deepeach(array, &block)
       array.each do |elem|
         elem.is_a?(Array) ? deepeach(elem, &block) : yield(elem)
     end
   end
 
-  def GraphUtils.deepselect!(array, &block)
+  def self.deepselect!(array, &block)
       array.select! do |elem|
       elem.is_a?(Array) ? deepselect!(elem, &block) : yield(elem)
     end
